@@ -1,0 +1,81 @@
+<div>
+    <h2>STUDENT FORM</h2>
+    <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+      <table>
+        <tr>
+          <td><label for="name">Name:</label></td>
+          <td><input type="text" placeholder="Enter Your Name" name="name" [(ngModel)]="currentStudent.name" ngModel required></td>
+        </tr>
+        <tr>
+          <td><label for="age">Age:</label></td>
+          <td><input type="number" placeholder="Enter Your Age" id="age" name="age" [(ngModel)]="currentStudent.age" ngModel required></td>
+        </tr>
+        <tr>
+          <td><label>Gender:</label></td>
+          <td>
+            <label for="male">
+              <input type="radio" id="male" name="gender" value="male" [(ngModel)]="currentStudent.gender" ngModel required> Male
+            </label>
+            <label for="female">
+              <input type="radio" id="female" name="gender" value="female" [(ngModel)]="currentStudent.gender" ngModel required> Female
+            </label>
+            <label for="other">
+              <input type="radio" id="other" name="gender" value="other" [(ngModel)]="currentStudent.age" ngModel required> Other
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="course">Course:</label></td>
+          <td>
+            <select id="course" name="course" [(ngModel)]="currentStudent.course" ngModel required>
+              <option value="Java Script">Java Script</option>
+              <option value="SQL">SQL</option>
+              <option value="Angular">Angular</option>
+              <option value="Python">Python</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" placeholder="Enter Your Email" id="email" name="email" [(ngModel)]="currentStudent.email" ngModel required></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" [disabled]="studentForm.invalid">{{ isEdit ? 'Update' : 'save'}}</button>
+            </td>
+        </tr>
+      </table>
+    </form>
+</div>
+  
+<div class="studentList">
+    <h2>STUDENTS LIST</h2>
+    <table>
+      <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Course</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; let i = index">
+            <td>{{ i+1 }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.gender }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+                <button (click)="editStudent(i)">Edit</button>
+                <button (click)="deleteStudent(i)">Delete</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+    
