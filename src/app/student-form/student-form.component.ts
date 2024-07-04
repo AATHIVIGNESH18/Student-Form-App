@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 interface Student {
   name: string;
-  age: any;
+  age: any | null;
   gender: string;
   course: string;
   email: string;
